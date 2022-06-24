@@ -1,0 +1,34 @@
+<mxfile host="65bd71144e">
+    <diagram id="cqAIXAwOPZfvTAL9Ij_G" name="Page-1">
+        <mxGraphModel dx="484" dy="504" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="50" width="180" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="機能1:検索" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="294" y="90" width="146" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="機能f1:ソート" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="294" y="120" width="146" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="297" y="150" width="143" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="機能2:サブスクリプション" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="307" y="160" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="機能2:サブスクリプション" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="307" y="230" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="機能2:サブスクリプション" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="307" y="300" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="機能3:追加" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="294" y="60" width="146" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
