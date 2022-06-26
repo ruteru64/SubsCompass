@@ -21,13 +21,13 @@ struct subscompassApp: App {
         WindowGroup {
             switch(mode){
                 case displayMode.home:
-                        HomeView()
+                    HomeView(mode: $mode)
                 case displayMode.add:
-                        HomeView()
+                    HomeView(mode: $mode)
                 case displayMode.edit:
-                        HomeView()
+                    HomeView(mode: $mode)
                 case displayMode.detail:
-                        HomeView()
+                    HomeView(mode: $mode)
             }
         }
     }

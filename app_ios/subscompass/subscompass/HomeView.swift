@@ -76,6 +76,7 @@ struct Sarch: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var contents:String = ""
     @FocusState var focus:Bool
+    @Binding var mode:displayMode
     var body: some View {
         Rectangle()
             .fill(Color(red:1.0-0.1, green:1.0-0.1, blue:1.0-0.1, opacity:1.0))
@@ -97,6 +98,7 @@ struct Sarch: View {
                                 }
                             )
                             .onTapGesture {
+                                mode = displayMode.add
                                 print("add")
                             }
                     }
@@ -125,6 +127,7 @@ struct HomeView: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
+    @Binding var mode:displayMode
     var n = [
         A(name:0),
         A(name:1),
@@ -141,12 +144,13 @@ struct HomeView: View {
     ]
     var body: some View {
         Group{
-            Sarch()
+            Sarch(mode:$mode)
             ScrollView{
                 ForEach(n) { num in
                     Subscription(index:num.name,id:num.id)
                 }
             }
+            mode == displayMode.add ? Text("add"):Text("any")
         }
     }
 }
