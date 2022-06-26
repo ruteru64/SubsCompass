@@ -26,7 +26,10 @@
                     <mxGeometry x="307" y="300" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="機能3:追加" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="294" y="60" width="146" height="20" as="geometry"/>
+                    <mxGeometry x="380" y="60" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="機能4:分析" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="297" y="60" width="60" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

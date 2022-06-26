@@ -7,11 +7,28 @@
 
 import SwiftUI
 
+enum displayMode {
+    case home
+    case add
+    case edit
+    case detail
+}
+
 @main
 struct subscompassApp: App {
+    @State var mode:displayMode = displayMode.home
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            switch(mode){
+                case displayMode.home:
+                        HomeView()
+                case displayMode.add:
+                        HomeView()
+                case displayMode.edit:
+                        HomeView()
+                case displayMode.detail:
+                        HomeView()
+            }
         }
     }
 }

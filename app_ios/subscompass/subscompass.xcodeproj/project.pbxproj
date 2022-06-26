@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9469C20B28661E0F007D612B /* subscompassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C20A28661E0F007D612B /* subscompassApp.swift */; };
-		9469C20D28661E0F007D612B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C20C28661E0F007D612B /* ContentView.swift */; };
+		9469C20D28661E0F007D612B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C20C28661E0F007D612B /* HomeView.swift */; };
 		9469C20F28661E11007D612B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9469C20E28661E11007D612B /* Assets.xcassets */; };
 		9469C21228661E11007D612B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9469C21128661E11007D612B /* Preview Assets.xcassets */; };
 		9469C21C28661E11007D612B /* subscompassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C21B28661E11007D612B /* subscompassTests.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		9469C20728661E0F007D612B /* subscompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = subscompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9469C20A28661E0F007D612B /* subscompassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subscompassApp.swift; sourceTree = "<group>"; };
-		9469C20C28661E0F007D612B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9469C20C28661E0F007D612B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9469C20E28661E11007D612B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9469C21128661E11007D612B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9469C21728661E11007D612B /* subscompassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = subscompassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				9469C20A28661E0F007D612B /* subscompassApp.swift */,
-				9469C20C28661E0F007D612B /* ContentView.swift */,
+				9469C20C28661E0F007D612B /* HomeView.swift */,
 				9469C20E28661E11007D612B /* Assets.xcassets */,
 				9469C21028661E11007D612B /* Preview Content */,
 			);
@@ -257,7 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9469C20D28661E0F007D612B /* ContentView.swift in Sources */,
+				9469C20D28661E0F007D612B /* HomeView.swift in Sources */,
 				9469C20B28661E0F007D612B /* subscompassApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

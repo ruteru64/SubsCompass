@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  subscompass
 //
 //  Created by teruki on 2022/06/25.
@@ -121,7 +121,7 @@ struct A: Identifiable {
     var name : CGFloat
 }
 
-struct ContentView: View {
+struct HomeView: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
