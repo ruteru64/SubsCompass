@@ -13,16 +13,23 @@ struct subsc: View {
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
     @State var index:CGFloat = 0
+    @State var isLongtap:Bool = false
     @State var id:UUID
+    
+    func onLongtap(){
+        isLongtap = isLongtap ?false:true
+    }
+    
     var body: some View {
         RoundedRectangle(cornerRadius:y*height/5)
             .fill(Color.blue)
-            .frame(width:x*width, height:y*height)
+            .frame(width:x*width, height: isLongtap ? y*height * 2 : y*height)
             .onTapGesture {
                 print("tap")
                 print(id)
             }
             .onLongPressGesture {
+                onLongtap()
                 print("long tap")
                 print(id)
             }
@@ -38,6 +45,7 @@ struct subsc: View {
                     print(id)
                 }
                 .onLongPressGesture {
+                    // 特に処理を入れる気がない
                     print("long tap red")
                     print(id)
                 }
@@ -51,6 +59,7 @@ struct subsc: View {
                     print(id)
                 }
                 .onLongPressGesture {
+                    // 特に処理を入れる気がない
                     print("long tap green")
                     print(id)
                 }
