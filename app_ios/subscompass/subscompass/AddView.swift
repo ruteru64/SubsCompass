@@ -24,6 +24,11 @@ struct AddView: View {
     @State var priod = 0
     @State var memo:String = ""
     @State var length:String
+    @State var red:Float = 0
+    @State var green:Float = 0
+    @State var blue:Float = 0
+    
+    @FocusState var focus:Bool
     
     var body: some View {
         VStack{
@@ -31,9 +36,11 @@ struct AddView: View {
                 Group{
                     Text("サブスク名")
                     TextEditor(text:$name)
+                        .focused($focus)
                         .frame(width:x*width, height: y*height)
                     Text("発行元")
                     TextEditor(text:$inc)
+                        .focused($focus)
                         .frame(width:x*width, height: y*height)
                 }
                 Group{
@@ -42,10 +49,32 @@ struct AddView: View {
                 }
                 Text("解約url")
                 TextEditor(text:$url)
+                    .focused($focus)
                     .frame(width:x*width, height: y*height)
                 Text("メモ")
                 TextEditor(text:$memo)
+                    .focused($focus)
                     .frame(width:x*width, height: y*height*2)
+                HStack{
+                    Text("色")
+                    RoundedRectangle(cornerRadius:y*height/5)
+                        .fill(Color(red: Double(red)/255.0, green: Double(green)/255.0, blue: Double(blue)/255.0))
+                }
+                Group{
+                    Text("R")
+                    Slider(value: $red, in: 0...255,step: 1)
+                }
+                Group{
+                    Text("G")
+                    Slider(value: $green, in: 0...255,step: 1)
+                }
+                Group{
+                    Text("B")
+                    Slider(value: $blue, in: 0...255,step: 1)
+                }
+            }
+            .onTapGesture {
+                focus = false
             }
             HStack{
                 RoundedRectangle(cornerRadius:y*height/5)
@@ -72,6 +101,13 @@ struct AddView: View {
                         UserDefaults.standard.set(0,forKey: "priodDB"+length)
                         UserDefaults.standard.set(memo,forKey: "memoDB"+length)
                         UserDefaults.standard.set(length,forKey: "length"+length)
+                        
+                        // 背景色
+                        UserDefaults.standard.set(Int(red),forKey: "redDB"+length)
+                        UserDefaults.standard.set(Int(blue),forKey: "blueDB"+length)
+                        UserDefaults.standard.set(Int(green),forKey: "greenDB"+length)
+                        UserDefaults.standard.set(false,forKey: "isDalateDB"+length)
+                        
                         UserDefaults.standard.set(false,forKey: "next"+length)
                         
                         if(length != "0"){

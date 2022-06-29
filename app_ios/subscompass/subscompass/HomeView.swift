@@ -20,49 +20,53 @@ struct subsc: View {
     }
     
     var body: some View {
-        RoundedRectangle(cornerRadius:y*height/5)
-            .fill(Color.blue)
-            .frame(width:x*width, height: isLongtap ? y*height * 2 : y*height)
-            .onTapGesture {
-                print("tap")
-                print(num.name)
-            }
-            .onLongPressGesture {
-                onLongtap()
-                print("long tap")
-                print(num.id)
-            }
-            .contentShape(
-                RoundedRectangle(cornerRadius: y*height/5)
-            )
-            .overlay(RoundedRectangle(cornerRadius:y*height/10)
-                .fill(Color.red)
-                .frame(width:(x*width) / 5, height:(y*height) / 2.5)
-                .position(x:x*(width*width*width), y:y*height * 0.5 - (y*height/4.5))
+        if (!num.isDalate){
+            RoundedRectangle(cornerRadius:y*height/5)
+                .fill(Color(red: Double(num.red)/255, green: Double(num.green)/255, blue: Double(num.blue)/255))
+                .frame(width:x*width, height: isLongtap ? y*height * 2 : y*height)
                 .onTapGesture {
-                    print("tap red")
-                    print(num.id)
+                    print("tap")
+                    print(num.name)
                 }
                 .onLongPressGesture {
-                    // 特に処理を入れる気がない
-                    print("long tap red")
+                    onLongtap()
+                    print("long tap")
                     print(num.id)
                 }
-            )
-            .overlay(RoundedRectangle(cornerRadius:y*height/10)
-                .fill(Color.green)
-                .frame(width:(x*width) / 5, height:(y*height) / 2.5)
-                .position(x:x*(width*width*width), y:y*height * 0.5 + (y*height/4.5))
-                .onTapGesture {
-                    print("tap green")
-                    print(num.id)
-                }
-                .onLongPressGesture {
-                    // 特に処理を入れる気がない
-                    print("long tap green")
-                    print(num.id)
-                }
-            )
+                .contentShape(
+                    RoundedRectangle(cornerRadius: y*height/5)
+                )
+                .overlay(RoundedRectangle(cornerRadius:y*height/10)
+                    .fill(Color.red)
+                    .frame(width:(x*width) / 5, height:(y*height) / 2.5)
+                    .position(x:x*(width*width*width), y:y*height * 0.5 - (y*height/4.5))
+                    .onTapGesture {
+                        print("tap red")
+                        print(num.id)
+                        UserDefaults.standard.set(true,forKey: "isDalateDB"+num.length)
+                        num.isDalate = true
+                    }
+                    .onLongPressGesture {
+                        // 特に処理を入れる気がない
+                        print("long tap red")
+                        print(num.id)
+                    }
+                )
+                .overlay(RoundedRectangle(cornerRadius:y*height/10)
+                    .fill(Color.green)
+                    .frame(width:(x*width) / 5, height:(y*height) / 2.5)
+                    .position(x:x*(width*width*width), y:y*height * 0.5 + (y*height/4.5))
+                    .onTapGesture {
+                        print("tap green")
+                        print(num.id)
+                    }
+                    .onLongPressGesture {
+                        // 特に処理を入れる気がない
+                        print("long tap green")
+                        print(num.id)
+                    }
+                )
+        }
     }
 }
 
@@ -82,6 +86,7 @@ struct Sarch: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var contents:String = ""
+    @State var isDisplayDelate:Bool = false
     @FocusState var focus:Bool
     @Binding var mode:displayMode
     
@@ -93,6 +98,21 @@ struct Sarch: View {
                 VStack{
                     HStack{
                         Spacer()
+                        if(isDisplayDelate){
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width:y/20, height: y/20)
+                                .onTapGesture {
+                                    print("display all dalete")
+                                    isDisplayDelate = false
+                                }
+                                .onLongPressGesture{
+                                    print("all dalete")
+                                    let appDomain = Bundle.main.bundleIdentifier
+                                    UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+                                    isDisplayDelate = false
+                                }
+                        }
                         Circle()
                             .fill(Color.green)
                             .frame(width:y/20, height: y/20)
@@ -108,6 +128,10 @@ struct Sarch: View {
                             .onTapGesture {
                                 mode = displayMode.add
                                 print("add")
+                            }
+                            .onLongPressGesture{
+                                print("display all dalete")
+                                isDisplayDelate = true
                             }
                     }
                     Form{
@@ -132,7 +156,7 @@ struct HomeView: View {
     @State var height:CGFloat = 1/6
     @Binding var mode:displayMode
     @State var n = [
-        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo"),
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo",red:1,green:0, blue:0,isDalate: false)
     ]
     var body: some View {
         Group{
