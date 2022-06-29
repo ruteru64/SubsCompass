@@ -12,9 +12,8 @@ struct subsc: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
-    @State var index:CGFloat = 0
+    @State var num:saveData
     @State var isLongtap:Bool = false
-    @State var id:UUID
     
     func onLongtap(){
         isLongtap = isLongtap ?false:true
@@ -26,12 +25,12 @@ struct subsc: View {
             .frame(width:x*width, height: isLongtap ? y*height * 2 : y*height)
             .onTapGesture {
                 print("tap")
-                print(id)
+                print(num.name)
             }
             .onLongPressGesture {
                 onLongtap()
                 print("long tap")
-                print(id)
+                print(num.id)
             }
             .contentShape(
                 RoundedRectangle(cornerRadius: y*height/5)
@@ -42,12 +41,12 @@ struct subsc: View {
                 .position(x:x*(width*width*width), y:y*height * 0.5 - (y*height/4.5))
                 .onTapGesture {
                     print("tap red")
-                    print(id)
+                    print(num.id)
                 }
                 .onLongPressGesture {
                     // 特に処理を入れる気がない
                     print("long tap red")
-                    print(id)
+                    print(num.id)
                 }
             )
             .overlay(RoundedRectangle(cornerRadius:y*height/10)
@@ -56,12 +55,12 @@ struct subsc: View {
                 .position(x:x*(width*width*width), y:y*height * 0.5 + (y*height/4.5))
                 .onTapGesture {
                     print("tap green")
-                    print(id)
+                    print(num.id)
                 }
                 .onLongPressGesture {
                     // 特に処理を入れる気がない
                     print("long tap green")
-                    print(id)
+                    print(num.id)
                 }
             )
     }
@@ -72,10 +71,9 @@ struct Subscription: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
-    @State var index:CGFloat = 0
-    @State var id:UUID
+    @State var num:saveData
     var body: some View {
-        subsc(index:index,id:id)
+        subsc(num: num)
             .border(Color.red, width: 2) // debug
     }
 }
@@ -86,6 +84,7 @@ struct Sarch: View {
     @State var contents:String = ""
     @FocusState var focus:Bool
     @Binding var mode:displayMode
+    
     var body: some View {
         Rectangle()
             .fill(Color(red:1.0-0.1, green:1.0-0.1, blue:1.0-0.1, opacity:1.0))
@@ -127,39 +126,23 @@ struct Sarch: View {
     }
 }
 
-struct A: Identifiable {
-    var id = UUID()
-    var name : CGFloat
-}
-
 struct HomeView: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @Binding var mode:displayMode
-    var n = [
-        A(name:0),
-        A(name:1),
-        A(name:2),
-        A(name:3),
-        A(name:4),
-        A(name:5),
-        A(name:6),
-        A(name:7),
-        A(name:8),
-        A(name:9),
-        A(name:10),
-        A(name:11),
+    @State var n = [
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo"),
     ]
     var body: some View {
         Group{
             Sarch(mode:$mode)
             ScrollView{
                 ForEach(n) { num in
-                    Subscription(index:num.name,id:num.id)
+                    Subscription(num:num)
                 }
             }
-            mode == displayMode.add ? Text("add"):Text("any")
+            Text(mode.rawValue)
         }
     }
 }
