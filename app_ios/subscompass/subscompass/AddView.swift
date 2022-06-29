@@ -116,6 +116,7 @@ struct AddView: View {
                         
                         print(UserDefaults.standard.string(forKey: "nameDB"+length)!)
                         print(length)
+                        mode = displayMode.home
                     }
                     .overlay(
                         Text("追加")

@@ -12,7 +12,7 @@ struct subsc: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
-    @State var num:saveData
+    @Binding var num:saveData
     @State var isLongtap:Bool = false
     
     func onLongtap(){
@@ -35,6 +35,10 @@ struct subsc: View {
                 }
                 .contentShape(
                     RoundedRectangle(cornerRadius: y*height/5)
+                )
+                .overlay(
+                    Text(num.name)
+                        .foregroundColor( num.red + num.green + num.blue > 255*3/2 ? Color.black : Color.white)
                 )
                 .overlay(RoundedRectangle(cornerRadius:y*height/10)
                     .fill(Color.red)
@@ -75,9 +79,9 @@ struct Subscription: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
-    @State var num:saveData
+    @Binding var num:saveData
     var body: some View {
-        subsc(num: num)
+        subsc(num: $num)
             .border(Color.red, width: 2) // debug
     }
 }
@@ -89,6 +93,8 @@ struct Sarch: View {
     @State var isDisplayDelate:Bool = false
     @FocusState var focus:Bool
     @Binding var mode:displayMode
+    
+    @Binding var n:[saveData]
     
     var body: some View {
         Rectangle()
@@ -111,6 +117,9 @@ struct Sarch: View {
                                     let appDomain = Bundle.main.bundleIdentifier
                                     UserDefaults.standard.removePersistentDomain(forName: appDomain!)
                                     isDisplayDelate = false
+                                    for i in 0...n.count-1{
+                                        n[i].isDalate = true
+                                    }
                                 }
                         }
                         Circle()
@@ -156,13 +165,13 @@ struct HomeView: View {
     @State var height:CGFloat = 1/6
     @Binding var mode:displayMode
     @State var n = [
-        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo",red:1,green:0, blue:0,isDalate: false)
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo",red:1,green:0, blue:0,isDalate: true)
     ]
     var body: some View {
         Group{
-            Sarch(mode:$mode)
+            Sarch(mode:$mode,n:$n)
             ScrollView{
-                ForEach(n) { num in
+                ForEach($n) { num in
                     Subscription(num:num)
                 }
             }
