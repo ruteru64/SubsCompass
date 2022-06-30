@@ -13,6 +13,7 @@ struct EditView: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/12
     @State var width:CGFloat = 9/10
+    @State var isOpenpriod:Bool = false
     
     
     @Binding var mode:displayMode
@@ -46,6 +47,31 @@ struct EditView: View {
                 }
                 Group{
                     Text("期間")
+                    RoundedRectangle(cornerRadius:y*height/5)
+                        .fill(Color.white)
+                        .frame(width:x*width, height: y*height)
+                        .onTapGesture {
+                            print("white")
+                            isOpenpriod = isOpenpriod ? false : true
+                        }
+                        .overlay(
+                            Text(getPriodString(priod: priod))
+                        )
+                    if isOpenpriod {
+                        ForEach(PriodList) { p in
+                            RoundedRectangle(cornerRadius:y*height/5)
+                                .fill(Color.white)
+                                .frame(width:x*width, height: y*height/2)
+                                .onTapGesture {
+                                    print("white")
+                                    isOpenpriod = false
+                                    priod = p.p
+                                }
+                                .overlay(
+                                    Text(getPriodString(priod: p.p))
+                                )
+                        }
+                    }
                     DatePicker("開始日", selection: $beginDate, displayedComponents: .date)
                 }
                 Text("解約url")
@@ -99,7 +125,7 @@ struct EditView: View {
                         UserDefaults.standard.set(inc,forKey: "incDB"+length)
                         UserDefaults.standard.set(url,forKey: "urlDB"+length)
                         UserDefaults.standard.set(DateToString(d:beginDate),forKey: "beginDateDB"+length)
-                        UserDefaults.standard.set(0,forKey: "priodDB"+length)
+                        UserDefaults.standard.set(priod,forKey: "priodDB"+length)
                         UserDefaults.standard.set(memo,forKey: "memoDB"+length)
                         UserDefaults.standard.set(length,forKey: "length"+length)
                         

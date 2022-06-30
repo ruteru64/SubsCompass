@@ -91,7 +91,12 @@ struct subscompassApp: App {
                         blue:Float(n.blue)
                     )
                 case displayMode.detail:
-                    HomeView(n:getData(), mode: $mode,length: $length)
+                let n = getinLength(l: length)
+                DetailView(
+                    length: length,
+                    mode: $mode,
+                    n:n
+                )
             }
         }
     }

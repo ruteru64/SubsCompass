@@ -31,6 +31,8 @@ struct subsc: View {
                 .onTapGesture {
                     print("tap")
                     print(num.name)
+                    length = num.length
+                    mode = displayMode.detail
                 }
                 .onLongPressGesture {
                     onLongtap()
@@ -202,7 +204,7 @@ struct HomeView: View {
     @State var contents:String = ""
     
     @State var n = [
-        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo",red:1,green:0, blue:0,isDalate: true)
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true)
     ]
     
     @Binding var mode:displayMode
