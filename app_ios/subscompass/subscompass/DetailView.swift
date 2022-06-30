@@ -27,8 +27,14 @@ struct DetailView: View {
                     .fill(Color.gray)
                     .frame(width:x*width, height: y*height * 2)
                     .overlay(
-                        Text(n.name)
+                        VStack{
+                            Text(n.name)
+                            Text("解約URLのコピー")
+                        }
                     )
+                    .onTapGesture {
+                        UIPasteboard.general.string = n.url
+                    }
                 RoundedRectangle(cornerRadius:y*height/5)
                     .fill(Color.gray)
                     .frame(width:x*width, height: y*height * 2)
@@ -103,7 +109,7 @@ struct DetailView: View {
                 .frame(width:x*width/2, height: y*height)
                 .onTapGesture {
                     print("green")
-                    mode = displayMode.home
+                    mode = displayMode.edit
                 }
                 .overlay(
                     Text("変更")
