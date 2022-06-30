@@ -12,15 +12,17 @@ struct subsc: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
-    @Binding var num:saveData
     @State var isLongtap:Bool = false
+    
+    @Binding var num:saveData
+    @Binding var contents:String
     
     func onLongtap(){
         isLongtap = isLongtap ?false:true
     }
     
     var body: some View {
-        if (!num.isDalate){
+        if (!num.isDalate && (num.name.contains(contents) || contents == "")){
             RoundedRectangle(cornerRadius:y*height/5)
                 .fill(Color(red: Double(num.red)/255, green: Double(num.green)/255, blue: Double(num.blue)/255))
                 .frame(width:x*width, height: isLongtap ? y*height * 2 : y*height)
@@ -32,13 +34,26 @@ struct subsc: View {
                     onLongtap()
                     print("long tap")
                     print(num.id)
+                    print("memo:"+num.memo)
                 }
                 .contentShape(
                     RoundedRectangle(cornerRadius: y*height/5)
                 )
                 .overlay(
-                    Text(num.name)
-                        .foregroundColor( num.red + num.green + num.blue > 255*3/2 ? Color.black : Color.white)
+                    VStack{
+                        Text(num.name.prefix(5))
+                        Text(DateToString(d:num.beginDate))
+                        Text(num.inc.prefix(5))
+                        
+                        if (isLongtap){
+                            Text(num.memo)
+                                .frame(width: x*width, height:y*height )
+                        }
+                    }
+                    .foregroundColor( num.red + num.green + num.blue > 255*3/2 ? Color.black : Color.white)
+                    .onLongPressGesture {
+                        onLongtap()
+                    }
                 )
                 .overlay(RoundedRectangle(cornerRadius:y*height/10)
                     .fill(Color.red)
@@ -79,9 +94,12 @@ struct Subscription: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @State var width:CGFloat = 9/10
+    
     @Binding var num:saveData
+    @Binding var contents:String
+    
     var body: some View {
-        subsc(num: $num)
+        subsc(num: $num,contents:$contents)
             .border(Color.red, width: 2) // debug
     }
 }
@@ -89,12 +107,12 @@ struct Subscription: View {
 struct Sarch: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
-    @State var contents:String = ""
     @State var isDisplayDelate:Bool = false
     @FocusState var focus:Bool
-    @Binding var mode:displayMode
     
+    @Binding var mode:displayMode
     @Binding var n:[saveData]
+    @Binding var contents:String
     
     var body: some View {
         Rectangle()
@@ -164,15 +182,16 @@ struct HomeView: View {
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
     @Binding var mode:displayMode
+    @State var contents:String = ""
     @State var n = [
         saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo",red:1,green:0, blue:0,isDalate: true)
     ]
     var body: some View {
         Group{
-            Sarch(mode:$mode,n:$n)
+            Sarch(mode:$mode,n:$n,contents:$contents)
             ScrollView{
                 ForEach($n) { num in
-                    Subscription(num:num)
+                    Subscription(num:num,contents: $contents)
                 }
             }
             Text(mode.rawValue)

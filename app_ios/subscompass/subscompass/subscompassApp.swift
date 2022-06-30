@@ -28,7 +28,7 @@ struct subscompassApp: App {
                     url: UserDefaults.standard.string(forKey: "urlDB"+String(i))!,
                     beginDate: StringToDate(dateValue:UserDefaults.standard.string(forKey: "beginDateDB"+String(i))!),
                     priod: UserDefaults.standard.integer(forKey: "priodDB"+String(i)),
-                    memo:UserDefaults.standard.string(forKey: "urlDB"+String(i))!,
+                    memo:UserDefaults.standard.string(forKey: "memoDB"+String(i))!,
                     red:UserDefaults.standard.integer(forKey: "redDB"+String(i)),
                     green: UserDefaults.standard.integer(forKey: "greenDB"+String(i)),
                     blue: UserDefaults.standard.integer(forKey: "blueDB"+String(i)),
