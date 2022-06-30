@@ -1,35 +1,36 @@
 //
-//  AddView.swift
+//  EditView.swift
 //  subscompass
 //
-//  Created by teruki on 2022/06/29.
+//  Created by teruki on 2022/06/30.
 //
 
 import SwiftUI
 
-struct AddView: View {
-    
+struct EditView: View {
     // 表示・UI系変数
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/12
     @State var width:CGFloat = 9/10
-    @Binding var mode:displayMode
     
-    @State var length:String
+    
+    @Binding var mode:displayMode
+    @Binding var length:String
+    
     // コンテンツ系変数
-    @State var name:String = ""
-    @State var inc:String = ""
-    @State var url:String = ""
-    @State var beginDate = Date()
-    @State var priod = 0
-    @State var memo:String = ""
-    @State var red:Float = 0
-    @State var green:Float = 0
-    @State var blue:Float = 0
+    @State var name:String
+    @State var inc:String
+    @State var url:String
+    @State var beginDate:Date
+    @State var priod:Int
+    @State var memo:String
+    @State var red:Float
+    @State var green:Float
+    @State var blue:Float
     
     @FocusState var focus:Bool
-    
+
     var body: some View {
         VStack{
             Form{
@@ -106,9 +107,6 @@ struct AddView: View {
                         UserDefaults.standard.set(Int(red),forKey: "redDB"+length)
                         UserDefaults.standard.set(Int(blue),forKey: "blueDB"+length)
                         UserDefaults.standard.set(Int(green),forKey: "greenDB"+length)
-                        UserDefaults.standard.set(false,forKey: "isDalateDB"+length)
-                        
-                        UserDefaults.standard.set(false,forKey: "next"+length)
                         
                         if(length != "0"){
                             UserDefaults.standard.set(true,forKey: "next"+String(Int(length)!-1))
@@ -119,7 +117,7 @@ struct AddView: View {
                         mode = displayMode.home
                     }
                     .overlay(
-                        Text("追加")
+                        Text("変更")
                     )
             }
         }
@@ -127,9 +125,9 @@ struct AddView: View {
 }
 
 /*
-struct AddView_Previews: PreviewProvider {
+struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView()
+        EditView()
     }
 }
  */

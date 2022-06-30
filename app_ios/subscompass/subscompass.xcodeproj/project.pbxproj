@@ -16,6 +16,7 @@
 		9469C22828661E11007D612B /* subscompassUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C22728661E11007D612B /* subscompassUITestsLaunchTests.swift */; };
 		9469C237286C39BB007D612B /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C236286C39BB007D612B /* AddView.swift */; };
 		9469C23C286C4556007D612B /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C23B286C4556007D612B /* util.swift */; };
+		9469C23E286D50FC007D612B /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9469C23D286D50FC007D612B /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		9469C22728661E11007D612B /* subscompassUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subscompassUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9469C236286C39BB007D612B /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		9469C23B286C4556007D612B /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		9469C23D286D50FC007D612B /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				9469C21028661E11007D612B /* Preview Content */,
 				9469C236286C39BB007D612B /* AddView.swift */,
 				9469C23B286C4556007D612B /* util.swift */,
+				9469C23D286D50FC007D612B /* EditView.swift */,
 			);
 			path = subscompass;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9469C20D28661E0F007D612B /* HomeView.swift in Sources */,
+				9469C23E286D50FC007D612B /* EditView.swift in Sources */,
 				9469C20B28661E0F007D612B /* subscompassApp.swift in Sources */,
 				9469C237286C39BB007D612B /* AddView.swift in Sources */,
 				9469C23C286C4556007D612B /* util.swift in Sources */,

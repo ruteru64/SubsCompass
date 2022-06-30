@@ -15,7 +15,9 @@ struct subsc: View {
     @State var isLongtap:Bool = false
     
     @Binding var num:saveData
+    @Binding var mode:displayMode
     @Binding var contents:String
+    @Binding var length:String
     
     func onLongtap(){
         isLongtap = isLongtap ?false:true
@@ -59,6 +61,11 @@ struct subsc: View {
                     .fill(Color.red)
                     .frame(width:(x*width) / 5, height:(y*height) / 2.5)
                     .position(x:x*(width*width*width), y:y*height * 0.5 - (y*height/4.5))
+                    .overlay(
+                        Text("削除")
+                            .frame(width:(x*width) / 5, height:(y*height) / 2.5)
+                            .position(x:x*(width*width*width), y:y*height * 0.5 - (y*height/4.5))
+                    )
                     .onTapGesture {
                         print("tap red")
                         print(num.id)
@@ -75,9 +82,16 @@ struct subsc: View {
                     .fill(Color.green)
                     .frame(width:(x*width) / 5, height:(y*height) / 2.5)
                     .position(x:x*(width*width*width), y:y*height * 0.5 + (y*height/4.5))
+                    .overlay(
+                        Text("編集")
+                            .frame(width:(x*width) / 5, height:(y*height) / 2.5)
+                            .position(x:x*(width*width*width), y:y*height * 0.5 + (y*height/4.5))
+                    )
                     .onTapGesture {
                         print("tap green")
                         print(num.id)
+                        length = num.length
+                        mode = displayMode.edit
                     }
                     .onLongPressGesture {
                         // 特に処理を入れる気がない
@@ -96,11 +110,15 @@ struct Subscription: View {
     @State var width:CGFloat = 9/10
     
     @Binding var num:saveData
+    @Binding var mode:displayMode
     @Binding var contents:String
+    @Binding var length:String
     
     var body: some View {
-        subsc(num: $num,contents:$contents)
-            .border(Color.red, width: 2) // debug
+        if(!num.isDalate){
+            subsc(num: $num,mode: $mode, contents:$contents,length: $length)
+                .border(Color.red, width: 2) // debug
+        }
     }
 }
 
@@ -181,17 +199,21 @@ struct HomeView: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
     @State var height:CGFloat = 1/6
-    @Binding var mode:displayMode
     @State var contents:String = ""
+    
     @State var n = [
         saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: 0,memo: "memo",red:1,green:0, blue:0,isDalate: true)
     ]
+    
+    @Binding var mode:displayMode
+    @Binding var length:String
+    
     var body: some View {
         Group{
             Sarch(mode:$mode,n:$n,contents:$contents)
             ScrollView{
                 ForEach($n) { num in
-                    Subscription(num:num,contents: $contents)
+                    Subscription(num:num,mode:$mode, contents: $contents,length: $length)
                 }
             }
             Text(mode.rawValue)

@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct subscompassApp: App {
     @State var mode:displayMode = displayMode.home
+    @State var length:String = ""
     
     func getData()->[saveData]{
         if (UserDefaults.standard.string(forKey: "nameDB"+"0") == nil){
@@ -56,18 +57,41 @@ struct subscompassApp: App {
         return String(i)
     }
     
+    func getinLength(l:String)->saveData{
+        let temp = getData()
+        for i in 0...temp.count{
+            if temp[i].length == l{
+                return temp[i]
+            }
+        }
+        return temp[0]
+    }
+    
     var body: some Scene {
         WindowGroup {
             switch(mode){
                 case displayMode.home:
-                HomeView(mode: $mode,n:getData())
+                    HomeView(n:getData(), mode: $mode,length: $length)
                 case displayMode.add:
                     // HomeView(mode: $mode)
                     AddView(mode: $mode,length: getLength())
                 case displayMode.edit:
-                    HomeView(mode: $mode)
+                    let n = getinLength(l: length)
+                    EditView(
+                        mode: $mode,
+                        length: $length,
+                        name: n.name,
+                        inc: n.inc,
+                        url:n.url,
+                        beginDate:n.beginDate,
+                        priod: n.priod,
+                        memo:n.memo,
+                        red:Float(n.red),
+                        green:Float(n.green),
+                        blue:Float(n.blue)
+                    )
                 case displayMode.detail:
-                    HomeView(mode: $mode)
+                    HomeView(n:getData(), mode: $mode,length: $length)
             }
         }
     }
