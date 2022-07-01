@@ -45,7 +45,7 @@ struct subsc: View {
                     RoundedRectangle(cornerRadius: y*height/5)
                 )
                 .overlay(
-                    URLImage(url: num.img)
+                    URLImage(url: num.img == "" ? "https://1.bp.blogspot.com/-D2I7Z7-HLGU/Xlyf7OYUi8I/AAAAAAABXq4/jZ0035aDGiE5dP3WiYhlSqhhMgGy8p7zACNcBGAsYHQ/s1600/no_image_square.jpg" : num.img)
                         .frame(width:x*width/4 , height:y*height*2/3)
                         .cornerRadius(y*height)
                         .position(x: x*(1-(width*width)),y:y*height/2)

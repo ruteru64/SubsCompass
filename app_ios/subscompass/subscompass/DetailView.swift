@@ -23,8 +23,10 @@ struct DetailView: View {
     var body: some View {
         Form{
             VStack{
-                URLImage(url:n.img)
-                    .frame(width: x*width, height: y*height * 2)
+                if n.img != ""{
+                    URLImage(url:n.img)
+                        .frame(width: x*width, height: y*height * 2)
+                }
                 RoundedRectangle(cornerRadius:y*height/5)
                     .fill(Color.gray)
                     .frame(width:x*width, height: y*height * 2)
@@ -80,7 +82,7 @@ struct DetailView: View {
                     .overlay(
                         VStack{
                             Text("合計金額")
-                            Text("いっぱい") // todo
+                            Text(String(getNextPriodindex(priod:n.priod,now:Date(),begin:n.beginDate)*n.price)+"円") // todo
                         }
                     )
                 RoundedRectangle(cornerRadius:y*height/5)

@@ -282,12 +282,22 @@ func getPriod(priod:Int,now:Date)->Date{
     }
 }
 
-
+// 次の日程を出す
 func getNextPriod(priod:Int,now:Date,begin:Date)->Date{
     var out = begin
     while out <= now{
         out = getPriod(priod: priod, now: out)
-        print(out)
     }
     return out
+}
+
+// 次の日程までの支払い回数を出す
+func getNextPriodindex(priod:Int,now:Date,begin:Date)->Int{
+    var out = begin
+    var i:Int = 0
+    while out <= now{
+        out = getPriod(priod: priod, now: out)
+        i += 1
+    }
+    return i
 }
