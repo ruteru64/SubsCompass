@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct subsc: View {
     @State var x:CGFloat = UIScreen.main.bounds.width
     @State var y:CGFloat = UIScreen.main.bounds.height
@@ -42,6 +43,12 @@ struct subsc: View {
                 }
                 .contentShape(
                     RoundedRectangle(cornerRadius: y*height/5)
+                )
+                .overlay(
+                    URLImage(url: num.img)
+                        .frame(width:x*width/4 , height:y*height*2/3)
+                        .cornerRadius(y*height)
+                        .position(x: x*(1-(width*width)),y:y*height/2)
                 )
                 .overlay(
                     VStack{
@@ -204,7 +211,7 @@ struct HomeView: View {
     @State var contents:String = ""
     
     @State var n = [
-        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true)
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true,img:"")
     ]
     
     @Binding var mode:displayMode

@@ -36,6 +36,7 @@ struct saveData: Identifiable {
     var green:Int
     var blue:Int
     var isDalate:Bool
+    var img:String
 }
 
 enum displayMode:String {
@@ -186,3 +187,4 @@ func getPriodString(priod:Int)->String{
         return "未選択"
     }
 }
+

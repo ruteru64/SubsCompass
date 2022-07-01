@@ -23,6 +23,8 @@ struct DetailView: View {
     var body: some View {
         Form{
             VStack{
+                URLImage(url:n.img)
+                    .frame(width: x*width, height: y*height * 2)
                 RoundedRectangle(cornerRadius:y*height/5)
                     .fill(Color.gray)
                     .frame(width:x*width, height: y*height * 2)

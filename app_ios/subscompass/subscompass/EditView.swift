@@ -29,6 +29,7 @@ struct EditView: View {
     @State var red:Float
     @State var green:Float
     @State var blue:Float
+    @State var img:String
     
     @FocusState var focus:Bool
 
@@ -42,6 +43,10 @@ struct EditView: View {
                         .frame(width:x*width, height: y*height)
                     Text("発行元")
                     TextEditor(text:$inc)
+                        .focused($focus)
+                        .frame(width:x*width, height: y*height)
+                    Text("画像")
+                    TextEditor(text:$img)
                         .focused($focus)
                         .frame(width:x*width, height: y*height)
                 }
@@ -128,6 +133,7 @@ struct EditView: View {
                         UserDefaults.standard.set(priod,forKey: "priodDB"+length)
                         UserDefaults.standard.set(memo,forKey: "memoDB"+length)
                         UserDefaults.standard.set(length,forKey: "length"+length)
+                        UserDefaults.standard.set(img,forKey: "imgDB"+length)
                         
                         // 背景色
                         UserDefaults.standard.set(Int(red),forKey: "redDB"+length)
