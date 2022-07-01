@@ -34,7 +34,8 @@ struct subscompassApp: App {
                     green: UserDefaults.standard.integer(forKey: "greenDB"+String(i)),
                     blue: UserDefaults.standard.integer(forKey: "blueDB"+String(i)),
                     isDalate: false,
-                    img:UserDefaults.standard.string(forKey: "imgDB"+String(i))!
+                    img:UserDefaults.standard.string(forKey: "imgDB"+String(i))!,
+                    price:UserDefaults.standard.integer(forKey: "priceDB"+String(i))
                 )
                 r += [temp]
             }
@@ -90,7 +91,8 @@ struct subscompassApp: App {
                         red:Float(n.red),
                         green:Float(n.green),
                         blue:Float(n.blue),
-                        img: n.img
+                        img: n.img,
+                        price: n.price
                     )
                 case displayMode.detail:
                 let n = getinLength(l: length)

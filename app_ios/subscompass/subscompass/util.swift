@@ -37,6 +37,7 @@ struct saveData: Identifiable {
     var blue:Int
     var isDalate:Bool
     var img:String
+    var price:Int
 }
 
 enum displayMode:String {
@@ -107,6 +108,8 @@ let PriodList:[priods] = [
     priods(p:priodMode.day4.rawValue),
     priods(p:priodMode.day5.rawValue),
     priods(p:priodMode.day6.rawValue),
+    priods(p:priodMode.day30.rawValue),
+    priods(p:priodMode.day365.rawValue),
     priods(p:priodMode.week1.rawValue),
     priods(p:priodMode.week2.rawValue),
     priods(p:priodMode.week3.rawValue),
@@ -143,6 +146,10 @@ func getPriodString(priod:Int)->String{
         return "5日"
     case priodMode.day6.rawValue:
         return "6日"
+    case priodMode.day30.rawValue:
+        return "30日"
+    case priodMode.day365.rawValue:
+        return "365日"
     case priodMode.week1.rawValue:
         return "1週間"
     case priodMode.week2.rawValue:
@@ -188,3 +195,99 @@ func getPriodString(priod:Int)->String{
     }
 }
 
+func getMonth(d:Date) -> Int{
+    return Calendar.current.component(.month, from: d)
+}
+
+func getYear(d:Date) -> Int{
+    return Calendar.current.component(.year, from: d)
+}
+
+func getPriod(priod:Int,now:Date)->Date{
+    switch(priod){
+    case priodMode.day1.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 1, to: now)!
+    case priodMode.day2.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 2, to: now)!
+    case priodMode.day3.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 3, to: now)!
+    case priodMode.day4.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 4, to: now)!
+    case priodMode.day5.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 5, to: now)!
+    case priodMode.day6.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 6, to: now)!
+    case priodMode.day30.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 30, to: now)!
+    case priodMode.day365.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 365, to: now)!
+    case priodMode.week1.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 7, to: now)!
+    case priodMode.week2.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 14, to: now)!
+    case priodMode.week3.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 21, to: now)!
+    case priodMode.week4.rawValue:
+        return Calendar.current.date(byAdding: .day, value: 28, to: now)!
+    case priodMode.month1.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 1, to: now)!
+    case priodMode.month2.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 2, to: now)!
+    case priodMode.month3.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 3, to: now)!
+    case priodMode.month4.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 4, to: now)!
+    case priodMode.month6.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 6, to: now)!
+    case priodMode.month8.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 8, to: now)!
+    case priodMode.month10.rawValue:
+        return Calendar.current.date(byAdding: .month, value: 10, to: now)!
+    case priodMode.year1.rawValue:
+        return Calendar.current.date(byAdding: .year, value: 1, to: now)!
+    case priodMode.year2.rawValue:
+        return Calendar.current.date(byAdding: .year, value: 2, to: now)!
+    case priodMode.nextmonth1.rawValue:
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: getYear(d: now), month: getMonth(d: now)+1))!
+    case priodMode.nextmonth2.rawValue:
+        let month = (getMonth(d: now) % 2 + 1) + getMonth(d: now)
+        let year = getYear(d: now)
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: year, month: month))!
+    case priodMode.nextmonth3.rawValue:
+        let month = (3-getMonth(d: now) % 3 + 1) + getMonth(d: now)
+        let year = getYear(d: now)
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: year, month: month))!
+    case priodMode.nextmonth4.rawValue:
+        let month = (4-getMonth(d: now) % 4 + 1) + getMonth(d: now)
+        let year = getYear(d: now)
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: year, month: month))!
+    case priodMode.nextmonth6.rawValue:
+        let month = (6-getMonth(d: now) % 6 + 1) + getMonth(d: now)
+        let year = getYear(d: now)
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: year, month: month))!
+    case priodMode.nextmonth12.rawValue:
+        let month = 1
+        let year = getYear(d: now) + 1
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: DateComponents(year: year, month: month))!
+    case priodMode.any.rawValue:
+        return now
+    default:
+        return now
+    }
+}
+
+
+func getNextPriod(priod:Int,now:Date,begin:Date)->Date{
+    var out = begin
+    while out <= now{
+        out = getPriod(priod: priod, now: out)
+        print(out)
+    }
+    return out
+}

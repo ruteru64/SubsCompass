@@ -49,6 +49,15 @@ struct subsc: View {
                         .frame(width:x*width/4 , height:y*height*2/3)
                         .cornerRadius(y*height)
                         .position(x: x*(1-(width*width)),y:y*height/2)
+                        .onTapGesture {
+                            print("tap")
+                            print(num.name)
+                            length = num.length
+                            mode = displayMode.detail
+                        }
+                        .onLongPressGesture {
+                            onLongtap()
+                        }
                 )
                 .overlay(
                     VStack{
@@ -62,6 +71,12 @@ struct subsc: View {
                         }
                     }
                     .foregroundColor( num.red + num.green + num.blue > 255*3/2 ? Color.black : Color.white)
+                    .onTapGesture {
+                        print("tap")
+                        print(num.name)
+                        length = num.length
+                        mode = displayMode.detail
+                    }
                     .onLongPressGesture {
                         onLongtap()
                     }
@@ -211,7 +226,7 @@ struct HomeView: View {
     @State var contents:String = ""
     
     @State var n = [
-        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true,img:"")
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true,img:"",price: 0)
     ]
     
     @Binding var mode:displayMode

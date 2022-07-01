@@ -30,6 +30,7 @@ struct EditView: View {
     @State var green:Float
     @State var blue:Float
     @State var img:String
+    @State var price:Int
     
     @FocusState var focus:Bool
 
@@ -77,6 +78,11 @@ struct EditView: View {
                                 )
                         }
                     }
+                    Text("価格")
+                    TextField("", value: $price, formatter: NumberFormatter())
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .keyboardType(.default)
                     DatePicker("開始日", selection: $beginDate, displayedComponents: .date)
                 }
                 Text("解約url")
@@ -134,6 +140,7 @@ struct EditView: View {
                         UserDefaults.standard.set(memo,forKey: "memoDB"+length)
                         UserDefaults.standard.set(length,forKey: "length"+length)
                         UserDefaults.standard.set(img,forKey: "imgDB"+length)
+                        UserDefaults.standard.set(price,forKey: "priceDB"+length)
                         
                         // 背景色
                         UserDefaults.standard.set(Int(red),forKey: "redDB"+length)
