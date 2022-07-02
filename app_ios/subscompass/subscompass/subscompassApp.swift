@@ -12,7 +12,7 @@ struct subscompassApp: App {
     @State var mode:displayMode = displayMode.home
     @State var length:String = ""
     
-    func getData()->[saveData]{
+    func getData(now:Date = Date())->[saveData]{
         if (UserDefaults.standard.string(forKey: "nameDB"+"0") == nil){
             let r:[saveData] = []
             return r
@@ -22,7 +22,7 @@ struct subscompassApp: App {
         var i = 0
         while(next){
             if (!UserDefaults.standard.bool(forKey: "isDalateDB"+String(i))){
-                let temp:saveData = saveData(
+                var temp:saveData = saveData(
                     length: String(i),
                     name: UserDefaults.standard.string(forKey: "nameDB"+String(i))!,
                     inc: UserDefaults.standard.string(forKey: "incDB"+String(i))!,
@@ -35,8 +35,10 @@ struct subscompassApp: App {
                     blue: UserDefaults.standard.integer(forKey: "blueDB"+String(i)),
                     isDalate: false,
                     img:UserDefaults.standard.string(forKey: "imgDB"+String(i))!,
-                    price:UserDefaults.standard.integer(forKey: "priceDB"+String(i))
+                    price:UserDefaults.standard.integer(forKey: "priceDB"+String(i)),
+                    nextpriod:now
                 )
+                temp.nextpriod = getNextPriod(priod: temp.priod, now: now, begin: temp.beginDate)
                 r += [temp]
             }
             next = UserDefaults.standard.bool(forKey: "next"+String(i))

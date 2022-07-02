@@ -57,7 +57,7 @@ struct DetailView: View {
                         .overlay(
                             VStack{
                                 Text("次回支払日")
-                                Text(DateToString(d:getNextPriod(priod: n.priod, now: Date(), begin: n.beginDate)))
+                                Text(DateToString(d:n.nextpriod))
                                 Text("支払い間隔")
                                 Text(getPriodString(priod:n.priod))//todo
                                 Text("支払い金額")

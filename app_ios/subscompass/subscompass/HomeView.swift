@@ -62,7 +62,7 @@ struct subsc: View {
                 .overlay(
                     VStack{
                         Text(num.name.prefix(5))
-                        Text(DateToString(d:num.beginDate))
+                        Text(DateToString(d:num.nextpriod))
                         Text(num.inc.prefix(5))
                         
                         if (isLongtap){
@@ -226,7 +226,7 @@ struct HomeView: View {
     @State var contents:String = ""
     
     @State var n = [
-        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true,img:"",price: 0)
+        saveData(length:"0", name:"0",inc: "nill",url: "https://",beginDate: StringToDate(dateValue: "2022/11/22"),priod: -1,memo: "memo",red:1,green:0, blue:0,isDalate: true,img:"",price: 0,nextpriod: Date())
     ]
     
     @Binding var mode:displayMode

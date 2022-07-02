@@ -38,6 +38,7 @@ struct saveData: Identifiable {
     var isDalate:Bool
     var img:String
     var price:Int
+    var nextpriod:Date
 }
 
 enum displayMode:String {
